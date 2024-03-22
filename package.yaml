@@ -1,0 +1,14 @@
+name: Engineer on Call
+description: Looks up the current engineer on Call in AlertOps
+
+version: 0.0.1
+
+documentation: https://github.com/bendersej/action-on-call
+
+dependencies:
+  conda-forge:
+    - python=3.10.12
+    - pip=23.2.1
+  pypi:
+    - robocorp=2.0.0
+    - robocorp-actions=0.1.0
