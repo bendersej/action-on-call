@@ -11,4 +11,4 @@ dependencies:
     - pip=23.2.1
   pypi:
     - robocorp=2.0.0
-    - robocorp-actions=0.1.0
+    - robocorp-actions=0.2.0

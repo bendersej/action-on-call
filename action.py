@@ -2,24 +2,18 @@
 A simple AI Action that returns the current engineer on call
 """
 
-from robocorp.actions import action, Request
+from robocorp.actions import action, Secret
 import requests
-import json
 
 
 @action
-def who_is_on_call_today(request: Request) -> str:
+def who_is_on_call_today(alertops_group_id: Secret, alertops_api_key: Secret) -> str:
     """
     Prints the current engineer on call
     """
-    action_context = json.loads(request.headers.get("X-Action-Context"))
+    api_url = f"https://app.alertops.com/api/v2/schedules/oncallnow?group_id={alertops_group_id}"
 
-    alert_opsOpsGroupId = action_context["ALERTOPS_GROUP_ID"]
-    api_key = action_context["ALERTOPS_API_KEY"]
-
-    api_url = f"https://app.alertops.com/api/v2/schedules/oncallnow?group_id={alert_opsOpsGroupId}"
-
-    headers = {"api-key": api_key}
+    headers = {"api-key": alertops_api_key}
 
     response = requests.get(api_url, headers=headers)
     engineer_on_call = response.json()[0]["members"][0]
